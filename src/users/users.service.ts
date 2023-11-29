@@ -16,14 +16,15 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return this.repo.findOne({
-      where: {id}
-    })
+    if (!id) {
+      return null
+    }
+    return this.repo.findOneBy({id})
   }
 
-  find(email: string) {
-    return this.repo.find({
-      where: {email}
+  findOneBy(email: string) {
+    return this.repo.findOne({
+      where: {email: email}
     })
   }
 
